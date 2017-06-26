@@ -1,23 +1,12 @@
-# this is an example of the Uber API
-# as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
-  title: rest test
+  title: "swagger definition for io.servicecomb.demo.jaxrs.tests.endpoints.SchemaFirstJaxrsImpl"
   version: 1.0.0
-  x-java-interface: io.servicecomb.demo.compute.Compute
-  
-# the domain of the service
-#host: api.uber.com
-
-# array of all schemes that your API supports
-#schemes:
-#  - https
-
-# will be prefixed to all paths
-basePath: /compute
+  x-java-interface: io.servicecomb.demo.jaxrs.tests.endpoints.SchemaFirstJaxrs
+basePath: "/schemaFirstJaxrs"
 produces:
   - application/json
-  
+
 paths:
   /add:
     post:
@@ -33,10 +22,10 @@ paths:
           required: true
           type: integer
           format: int32
-      responses: 
+      responses:
         200:
           description: add numer
-          schema: 
+          schema:
             type: integer
             format: int32
   /reduce:
@@ -135,19 +124,6 @@ paths:
           description: say hi
           schema:
             type: string
-  /sayhei:
-    delete:
-      operationId: sayHei
-      parameters:
-        - name: name
-          in: query
-          required: true
-          type: string
-      responses:
-        200:
-          description: say hi
-          schema:
-            type: string
   /istrue:
     get:
       operationId: isTrue
@@ -174,9 +150,106 @@ paths:
           schema:
             type: string
 
+  /testUserMap:
+    post:
+      operationId: testUserMap
+      parameters:
+        - name: userMap
+          in: body
+          required: false
+          schema:
+            type: object
+            additionalProperties:
+              $ref: '#/definitions/User'
+      responses:
+        200:
+          description: response of 200
+          schema:
+            type: object
+            additionalProperties:
+              $ref: '#/definitions/User'
+  /addDate:
+    post:
+      operationId: addDate
+      parameters:
+        - name: date
+          in: formData
+          required: false
+          type: string
+          format: date-time
+        - name: seconds
+          in: query
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: response of 200
+          schema:
+            type: string
+            format: date-time
+  /textPlain:
+    post:
+      operationId: textPlain
+      consumes:
+        - text/plain
+      parameters:
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: response of 200
+          schema:
+            type: string
+  /:
+    get:
+      operationId: defaultPath
+      parameters: []
+      responses:
+        200:
+          description: response of 200
+          schema:
+            type: integer
+            format: int32
+  /bytes:
+    post:
+      operationId: bytes
+      parameters:
+        - name: input
+          in: body
+          required: false
+          schema:
+            type: string
+            format: byte
+      responses:
+        200:
+          description: response of 200
+          schema:
+            type: string
+            format: byte
 definitions:
+  User:
+    type: object
+    properties:
+      name:
+        type: string
+      age:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      names:
+        type: array
+        items:
+          type: string
+    x-java-class: io.servicecomb.demo.server.User
   Person:
     type: object
     properties:
       name:
         type: string
+    x-java-class: io.servicecomb.demo.compute.Person

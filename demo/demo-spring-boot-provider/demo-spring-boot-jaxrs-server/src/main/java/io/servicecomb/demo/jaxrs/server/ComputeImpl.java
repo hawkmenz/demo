@@ -16,8 +16,11 @@
 
 package io.servicecomb.demo.jaxrs.server;
 
+import io.servicecomb.common.rest.codec.RestObjectMapper;
+import io.servicecomb.demo.compute.Person;
+import io.servicecomb.provider.rest.common.RestSchema;
+import io.servicecomb.swagger.invocation.context.ContextUtils;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -31,14 +34,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import io.servicecomb.common.rest.codec.RestObjectMapper;
-import io.servicecomb.demo.compute.Person;
-import io.servicecomb.provider.rest.common.RestSchema;
-import io.servicecomb.swagger.invocation.context.ContextUtils;
 
 @RestSchema(schemaId = "compute")
 @Path("/compute")

@@ -16,17 +16,6 @@
 
 package io.servicecomb.demo.jaxrs.client;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.ws.rs.core.MediaType;
-
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
 import io.servicecomb.common.rest.codec.RestObjectMapper;
 import io.servicecomb.core.CseContext;
 import io.servicecomb.demo.CodeFirstRestTemplate;
@@ -34,22 +23,17 @@ import io.servicecomb.demo.DemoConst;
 import io.servicecomb.demo.TestMgr;
 import io.servicecomb.demo.compute.Person;
 import io.servicecomb.provider.springmvc.reference.RestTemplateBuilder;
-import io.servicecomb.foundation.common.utils.BeanUtils;
-import io.servicecomb.foundation.common.utils.Log4jUtils;
+import java.util.HashMap;
+import java.util.Map;
+import javax.ws.rs.core.MediaType;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 public class JaxrsClient {
     private static RestTemplate templateNew = RestTemplateBuilder.create();
-
-    public static void main(String[] args) throws Exception {
-        init();
-
-        run();
-    }
-
-    public static void init() throws Exception {
-        Log4jUtils.init();
-        BeanUtils.init();
-    }
 
     public static void run() throws Exception {
         CodeFirstRestTemplate codeFirstClient = new CodeFirstRestTemplateJaxrs();

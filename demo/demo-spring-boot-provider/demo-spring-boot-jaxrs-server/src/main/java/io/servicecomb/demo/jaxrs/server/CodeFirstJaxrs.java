@@ -16,10 +16,22 @@
 
 package io.servicecomb.demo.jaxrs.server;
 
+import io.servicecomb.common.rest.codec.RestObjectMapper;
+import io.servicecomb.demo.compute.Person;
+import io.servicecomb.demo.server.User;
+import io.servicecomb.provider.rest.common.RestSchema;
+import io.servicecomb.swagger.extend.annotations.ResponseHeaders;
+import io.servicecomb.swagger.invocation.Response;
+import io.servicecomb.swagger.invocation.context.ContextUtils;
+import io.servicecomb.swagger.invocation.context.InvocationContext;
+import io.servicecomb.swagger.invocation.response.Headers;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ResponseHeader;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
@@ -35,20 +47,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
-
-import io.servicecomb.common.rest.codec.RestObjectMapper;
-import io.servicecomb.demo.compute.Person;
-import io.servicecomb.demo.server.User;
-import io.servicecomb.provider.rest.common.RestSchema;
-import io.servicecomb.swagger.extend.annotations.ResponseHeaders;
-import io.servicecomb.swagger.invocation.Response;
-import io.servicecomb.swagger.invocation.context.ContextUtils;
-import io.servicecomb.swagger.invocation.context.InvocationContext;
-import io.servicecomb.swagger.invocation.response.Headers;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ResponseHeader;
 
 @RestSchema(schemaId = "codeFirst")
 @Path("/codeFirstJaxrs")

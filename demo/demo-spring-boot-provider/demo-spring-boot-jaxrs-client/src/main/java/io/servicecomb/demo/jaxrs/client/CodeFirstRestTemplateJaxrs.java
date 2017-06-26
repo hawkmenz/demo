@@ -16,10 +16,9 @@
 
 package io.servicecomb.demo.jaxrs.client;
 
-import org.springframework.web.client.RestTemplate;
-
 import io.servicecomb.demo.CodeFirstRestTemplate;
 import io.servicecomb.demo.TestMgr;
+import org.springframework.web.client.RestTemplate;
 
 public class CodeFirstRestTemplateJaxrs extends CodeFirstRestTemplate {
     @Override
